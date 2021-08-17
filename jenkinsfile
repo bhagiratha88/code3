@@ -1,0 +1,12 @@
+node('MAVEN') {
+    stage('SCM') {
+    git credentialsId: '4428cff1-27df-4e58-90c1-2c58fbe77482', url: 'https://github.com/bhagiratha88/code3.git'
+}
+stage('BUILD') {
+    sh 'mvn clean install'
+}
+stage('package') {
+// This step should not normally be used in your script. Consult the inline help for details.
+archive 'target/*code3.war'
+}
+}
